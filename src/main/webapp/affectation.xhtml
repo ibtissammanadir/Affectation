@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Affectation Employé au Projet</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="employe" value="Nom de l'employé:" />
+            <h:selectOneMenu id="employe" value="#{affectationBean.selectedEmployeId}" required="true" requiredMessage="L'employé est requis.">
+                <f:selectItem itemLabel="Sélectionnez Employé" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{affectationBean.employes}" var="emp"
+                               itemValue="#{emp.id}" itemLabel="#{emp.name}"/>
+            </h:selectOneMenu>
+
+            <h:outputLabel for="projet" value="Nom du projet:" />
+            <h:selectOneMenu id="projet" value="#{affectationBean.selectedProjetId}" required="true" requiredMessage="Le projet est requis.">
+                <f:selectItem itemLabel="Sélectionnez Projet" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{affectationBean.projets}" var="proj"
+                               itemValue="#{proj.id}" itemLabel="#{proj.name}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+
+        <h:commandButton value="Affecter" action="#{affectationBean.affecterEmployeAuProjet}" />
+
+        <h:messages globalOnly="true" showDetail="true" />
+    </h:form>
+</h:body>
+</html>
